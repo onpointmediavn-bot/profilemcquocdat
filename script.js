@@ -164,17 +164,22 @@ window.toggleAudioGroup = function(activeId) {
 
     if (activePlayer) {
         if (activePlayer.muted !== undefined && typeof activePlayer.mute === 'undefined') {
+            // Trường hợp Video HTML5 (Lễ ăn hỏi)
             if (activePlayer.muted) {
                 activePlayer.muted = false;
+                activePlayer.currentTime = 0; // Quay lại từ đầu
                 if (iconMuted && iconUnmuted) { iconMuted.style.display = 'none'; iconUnmuted.style.display = 'block'; }
             } else {
                 activePlayer.muted = true;
                 if (iconMuted && iconUnmuted) { iconMuted.style.display = 'block'; iconUnmuted.style.display = 'none'; }
             }
         } else if (typeof activePlayer.isMuted === 'function') {
+            // Trường hợp YouTube
             if (activePlayer.isMuted()) {
                 activePlayer.unMute();
                 activePlayer.setVolume(100);
+                activePlayer.seekTo(0); // Quay lại từ đầu
+                activePlayer.playVideo();
                 if (iconMuted && iconUnmuted) { iconMuted.style.display = 'none'; iconUnmuted.style.display = 'block'; }
             } else {
                 activePlayer.mute();
