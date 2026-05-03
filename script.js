@@ -183,8 +183,8 @@ let galleryImages = [];
 let currentIndex = 0;
 
 function initGallery() {
-    // Collect all images that should be in the lightbox
-    const imgs = document.querySelectorAll('img');
+    // Collect all images EXCEPT partner logos
+    const imgs = document.querySelectorAll('img:not(.partner-logo-img)');
     galleryImages = Array.from(imgs).map(img => img.src);
 
     imgs.forEach(img => {
@@ -193,6 +193,11 @@ function initGallery() {
             e.stopPropagation();
             window.openLightbox(this.src);
         });
+    });
+
+    // Explicitly remove cursor pointer from logos just in case
+    document.querySelectorAll('.partner-logo-img').forEach(logo => {
+        logo.style.cursor = 'default';
     });
 }
 
