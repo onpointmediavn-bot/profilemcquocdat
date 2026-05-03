@@ -68,6 +68,8 @@ window.onYouTubeIframeAPIReady = function() {
         'mute': 1, 
         'playsinline': 1, 
         'enablejsapi': 1,
+        'vq': 'hd1080',
+        'hd': 1,
         'origin': window.location.origin
     };
 
