@@ -83,7 +83,7 @@ window.onYouTubeIframeAPIReady = function() {
         luxuryPlayer = new YT.Player('luxuryVideoPlayer', {
             videoId: 'D90Pw-GZ9qQ',
             playerVars: { ...commonVars, 'playlist': 'D90Pw-GZ9qQ' },
-            events: { 'onReady': onPlayerReady }
+            events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
         });
     }
 
@@ -91,7 +91,7 @@ window.onYouTubeIframeAPIReady = function() {
         intimatePlayer = new YT.Player('intimateVideoPlayer', {
             videoId: 'XcIhJ-xxlk8',
             playerVars: { ...commonVars, 'playlist': 'XcIhJ-xxlk8' },
-            events: { 'onReady': onPlayerReady }
+            events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
         });
     }
 
@@ -99,7 +99,7 @@ window.onYouTubeIframeAPIReady = function() {
         partyPlayer = new YT.Player('partyVideoPlayer', {
             videoId: 't-JuhBek4us',
             playerVars: { ...commonVars, 'playlist': 't-JuhBek4us' },
-            events: { 'onReady': onPlayerReady }
+            events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
         });
     }
 };
@@ -112,11 +112,17 @@ function onPlayerReady(event) {
 }
 
 function onPlayerStateChange(event) {
+    // Luôn luôn bắt đầu lại nếu video kết thúc (Cưỡng bức Loop)
+    if (event.data === YT.PlayerState.ENDED) {
+        event.target.playVideo();
+    }
+
+    // Xử lý nút Play đè (nếu có)
     const fallbackBtn = document.getElementById('fallback-play-btn');
-    if (event.data === 1 || event.data === 3) {
+    if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING) {
         if (fallbackBtn) fallbackBtn.style.opacity = '0';
         setTimeout(() => { if (fallbackBtn) fallbackBtn.style.pointerEvents = 'none'; }, 300);
-    } else {
+    } else if (event.data === YT.PlayerState.PAUSED) {
         if (fallbackBtn) {
             fallbackBtn.style.opacity = '1';
             fallbackBtn.style.pointerEvents = 'auto';
