@@ -426,16 +426,15 @@ nav {
     -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
-/* Subtle Zoom to hide YouTube UI while maintaining quality */
+/* Reset YouTube to 100% to maintain sharpness */
 .about-img iframe,
 .filmstrip-video-wrapper iframe,
-.album-item iframe {
-    width: 115% !important;
-    height: 115% !important;
+.service-video-wrapper iframe {
+    width: 100% !important;
+    height: 100% !important;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
     pointer-events: none;
 }
 
