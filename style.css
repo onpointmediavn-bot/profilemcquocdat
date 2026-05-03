@@ -417,13 +417,25 @@ nav {
     width: 100%;
     aspect-ratio: 4/5;
     border-radius: 999px 999px 10px 10px;
-    object-fit: cover;
     display: block;
     border: 8px solid var(--bg-beige);
     box-shadow: 0 15px 40px rgba(166, 138, 97, 0.15);
     overflow: hidden;
     transform: translateZ(0);
+    position: relative;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+/* Reset YouTube to 100% to maintain sharpness */
+.about-img iframe,
+.filmstrip-video-wrapper iframe,
+.service-video-wrapper iframe {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
 }
 
 /* SERVICES */
