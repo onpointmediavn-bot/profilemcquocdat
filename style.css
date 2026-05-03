@@ -557,7 +557,7 @@ nav {
     display: flex;
     width: max-content;
     gap: 0;
-    animation: scroll-film 20s linear infinite;
+    animation: scroll-film 20s linear infinite !important;
     will-change: transform;
 }
 
