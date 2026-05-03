@@ -258,7 +258,6 @@ nav {
 }
 
 .hamburger span {
-    display: block;
     width: 100%;
     height: 1.5px;
     background: var(--text-dark);
@@ -430,28 +429,29 @@ nav {
 .album-item iframe,
 .filmstrip-video-wrapper iframe {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
     pointer-events: none;
+    border: none;
 }
 
-/* Section 2 (Horizontal) */
+/* Horizontal videos */
 .album-item[style*="aspect-ratio: 16/9"] iframe {
-    width: 101% !important; /* Slight overfill to hide edge lines */
-    height: 101% !important;
+    width: 102% !important;
+    height: 102% !important;
 }
 
-/* Section 4 (Square container with Vertical video) */
-.filmstrip-video-wrapper div[style*="padding-top: 100%"] iframe {
-    width: 101% !important; 
-    height: 178% !important; /* Scale height to fill width for 9:16 video in 1:1 container */
-}
-
-/* Section 1 & 3 (Vertical) */
+/* Vertical videos (Section 1 & 3) */
 .album-item[style*="aspect-ratio: 9/16"] iframe {
-    width: 101% !important;
-    height: 101% !important;
+    width: 102% !important;
+    height: 102% !important;
+}
+
+/* Section 4: Square frame with vertical video */
+#partyVideoPlayer {
+    width: 102% !important;
+    height: 180% !important; /* Scale height to cover square width */
 }
 
 /* SERVICES */

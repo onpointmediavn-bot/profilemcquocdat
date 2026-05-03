@@ -67,10 +67,8 @@ window.onYouTubeIframeAPIReady = function() {
         'modestbranding': 1, 
         'mute': 1, 
         'playsinline': 1, 
-        'rel': 0, 
-        'showinfo': 0, 
-        'fs': 0, 
-        'iv_load_policy': 3 
+        'enablejsapi': 1,
+        'origin': window.location.origin
     };
 
     if (document.getElementById('storyVideoPlayer')) {
