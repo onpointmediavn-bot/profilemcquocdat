@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MC Quốc Đạt | Portfolio Mobile-Hard</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400&family=Pinyon+Script&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">MC Quốc Đạt</a>
+                <div class="nav-links">
+                    <a href="#about">Câu Chuyện</a>
+                    <a href="#services">Dịch Vụ</a>
+                    <a href="#gallery">Khoảnh Khắc</a>
+                    <a href="#contact">Liên Hệ</a>
+                </div>
+                <button class="hamburger">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero relative" style="overflow: hidden;">
+        <!-- 3D Luxury Elements -->
+        <div class="decor-3d sphere-pearl lg d-delay-1" style="top: 15%; left: 8%;"></div>
+        <div class="decor-3d sphere-gold sm d-delay-2" style="bottom: 25%; left: 45%;"></div>
+        <div class="decor-3d sphere-pearl sm" style="top: 25%; right: 40%;"></div>
+        <div class="decor-3d sphere-gold" style="bottom: 10%; right: 8%;"></div>
+
+        <div class="decor-script" style="top: 15%; left: -8%; opacity: 0.05;">Storyteller</div>
+
+        <div class="container">
+            <div class="hero-layout">
+                <div class="hero-content fade-in">
+                    <span class="subtitle">Wedding MC & Người Kể Chuyện</span>
+                    <div class="t-script">Hello, I am</div>
+                    <h1>Quốc Đạt</h1>
+                    <div
+                        style="margin: 30px 0; padding: 25px 25px 25px 30px; border-left: 3px solid var(--accent-gold); background: rgba(255,255,255,0.6); backdrop-filter: blur(5px); border-radius: 0 12px 12px 0; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+                        <span
+                            style="position: absolute; top: 15px; left: 15px; font-family: var(--font-serif); font-size: 60px; color: var(--accent-gold); opacity: 0.15; line-height: 0;">❝</span>
+                        <p
+                            style="font-family: var(--font-serif); font-size: clamp(18px, 1.8vw, 22px); color: var(--text-dark); font-style: italic; font-weight: 500; margin: 0; line-height: 1.6; position: relative; z-index: 2;">
+                            Một lễ cưới ý nghĩa, khi hành trình của tình yêu được kể lại đúng cách.
+                        </p>
+                    </div>
+                    <a href="#contact" class="btn">Lên lịch trò chuyện</a>
+                </div>
+
+                <div class="hero-images fade-in" style="transition-delay: 0.2s;">
+                    <img src="assets/img/IMG_9227.JPG" alt="MC Quốc Đạt" class="hero-main-img">
+                    <img src="assets/img/IMG_8358.JPG" alt="Sân khấu" class="hero-overlap-img">
+                </div>
+            </div>
+        </div>
+
+        <!-- Abstract Wave Transition -->
+        <div class="wave-divider"
+            style="bottom: 0px; top: auto; transform: rotate(180deg) scaleX(-1); background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1440 320%22 preserveAspectRatio=%22none%22%3E%3Cpath fill=%22%23FCFBF9%22 fill-opacity=%221%22 d=%22M0,128L80,149.3C160,171,320,213,480,218.7C640,224,800,192,960,170.7C1120,149,1280,139,1360,133.3L1440,128L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z%22%3E%3C/path%3E%3C/svg%3E');">
+        </div>
+    </section>
+
+    <!-- 2. ABOUT -->
+    <section id="about" class="bg-cream relative">
+        <div class="decor-3d sphere-pearl sm d-delay-1" style="top: -20px; left: 45%;"></div>
+        <div class="decor-3d sphere-gold sm" style="top: 50%; right: 5%;"></div>
+
+        <div class="decor-script" style="right: -10%; top: 40%;">Love Narrative</div>
+        <div class="container">
+            <div class="about-layout">
+                <div class="relative fade-in" style="position: relative;">
+                    <!-- Video My Story AutoPlay via YouTube -->
+                    <div class="about-img" style="position: relative; overflow: hidden; background: #000;">
+                        <!-- Render iframe 400% Desktop (để load 1080p), trên Mobile sẽ dùng thuộc tính CSS riêng thông qua id/class -->
+                        <div id="storyVideoWrapper"
+                            style="width: 400%; aspect-ratio: 9/16; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.33); pointer-events: none;">
+                            <div id="storyVideoPlayer" style="width: 100%; height: 100%;"></div>
+                        </div>
+
+                        <!-- Lớp Phủ (Fallback Play Button) khi điện thoại ở Chế độ Tiết kiệm pin chặn Autoplay -->
+                        <div id="fallback-play-btn"
+                            style="position: absolute; inset: 0; z-index: 10; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); cursor: pointer; color: var(--white); transition: 0.3s;"
+                            onclick="forcePlayStory()">
+                            <div
+                                style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.5);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" style="margin-left: 4px;">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="mute-btn" onclick="toggleAudioGroup('story')" title="Bật/Tắt Âm Thanh"
+                        style="pointer-events: auto;">
+                        <svg id="icon-muted-story" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <line x1="23" y1="9" x2="17" y2="15"></line>
+                            <line x1="17" y1="9" x2="23" y2="15"></line>
+                        </svg>
+                        <svg id="icon-unmuted-story" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="about-content fade-in" style="transition-delay: 0.2s;">
+                    <span class="t-script">My Story</span>
+                    <h2>Câu chuyện của bạn, được kể đúng cách</h2>
+                    <p>Mỗi cặp đôi đều có một câu chuyện rất riêng - không ồn ào, nhưng đủ sâu để thay đổi cách họ nhìn
+                        về nhau. Có những điều họ chưa từng nói ra, có những khoảnh khắc tưởng nhỏ nhưng lại là lý do để
+                        đi cùng nhau đến cuối.</p>
+                    <p>Vai trò của tôi không phải là “dẫn chương trình”, mà là lắng nghe đủ lâu để hiểu, rồi kể lại câu
+                        chuyện ấy theo cách chân thật nhất. Không thêm thắt, không nói quá, chỉ là đặt đúng cảm xúc vào
+                        đúng thời điểm, để mọi người có thể cảm nhận được tình yêu ấy theo cách tự nhiên nhất.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SERVICES (Philosophy) -->
+    <section id="services" class="bg-beige relative">
+        <div class="wave-divider"
+            style="top: -1px; background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1440 320%22 preserveAspectRatio=%22none%22%3E%3Cpath fill=%22%23FCFBF9%22 fill-opacity=%221%22 d=%22M0,64L80,85.3C160,107,320,149,480,144C640,139,800,85,960,69.3C1120,53,1280,75,1360,85.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z%22%3E%3C/path%3E%3C/svg%3E');">
+        </div>
+
+        <div class="decor-3d sphere-pearl lg d-delay-2" style="bottom: 10%; left: -10px;"></div>
+        <div class="decor-script" style="left: -5%; top: 70%; transform: rotate(-8deg);">Workflow</div>
+
+        <div class="container" style="padding-top: 40px;">
+            <div class="text-center fade-in">
+                <h2>Câu chuyện được hình thành như thế nào?</h2>
+                <p style="margin-top: 15px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Mỗi đám cưới là một hành trình rất riêng — nơi từng chi tiết nhỏ đều góp phần tạo nên một ký ức đáng
+                    nhớ.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <img src="assets/img/IMG_4421.JPG" alt="Service 1">
+                    <h3>Gặp gỡ & lắng nghe</h3>
+                    <p>Một cuộc trò chuyện đủ lâu để hiểu hai bạn đã bắt đầu như thế nào, và
+                        điều gì khiến hai bạn chọn ở lại bên nhau.</p>
+                </div>
+                <div class="service-card fade-in" style="transition-delay: 0.1s;">
+                    <img src="assets/img/IMG_0498.JPG" alt="Service 2">
+                    <h3>Chắt lọc & kể lại</h3>
+                    <p>Những điều rất riêng được sắp xếp lại một cách tinh tế — để câu chuyện
+                        ấy trở nên rõ ràng, tự nhiên và chạm đến cảm xúc.</p>
+                </div>
+                <div class="service-card fade-in" style="transition-delay: 0.2s;">
+                    <img src="assets/img/HNA_8072.jpeg" alt="Service 3">
+                    <h3>Hiện diện trong ngày cưới</h3>
+                    <p>Không phô trương, không làm quá — chỉ dẫn dắt mọi thứ đúng nhịp, để hai
+                        bạn có thể thoải mái là chính mình.</p>
+                </div>
+                <div class="service-card fade-in" style="transition-delay: 0.3s;">
+                    <img src="assets/img/IMG_1622.JPG" alt="Service 4">
+                    <h3>Dư âm còn lại</h3>
+                    <p>Khi buổi lễ khép lại, điều ở lại không chỉ là hình ảnh — mà là cảm xúc
+                        mà hai bạn sẽ muốn nhớ lại, rất lâu về sau.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. GALLERY ALBUMS (Cấu trúc phân mục nâng cao) -->
+    <section id="gallery" class="bg-cream relative">
+        <div class="decor-script" style="top: 0%; right: 10%;">Moments</div>
+        <div class="container fade-in">
+            <div class="text-center">
+                <span class="t-script">Portfolio</span>
+                <h2>Những khoảnh khắc đã được kể...</h2>
+                <p style="margin-top:15px;">Mỗi khoảnh khắc, một dấu ấn riêng.</p>
+            </div>
+
+            <!-- CHƯƠNG 1: Luxury Wedding -->
+            <div class="album-group fade-in">
+                <div class="album-header">
+                    <h3>01. Luxury Wedding</h3>
+                    <span>Tiệc Cưới Sang Trọng & Đẳng Cấp</span>
+                </div>
+
+                <!-- Bố cục 2 cột: Text bên trái, Video bên phải -->
+                <div class="album-grid-2" style="align-items: center; gap: 60px;">
+                    <!-- Nửa trái: Nội dung mô tả -->
+                    <div class="fade-in">
+                        <div class="section-script">The Luxury</div>
+                        <h4 style="margin-bottom: 20px;">Tiệc Cưới Sang Trọng & Đẳng Cấp</h4>
+                        <p style="margin-bottom: 15px;">Với những tiệc cưới mang tính riêng tư và cao cấp, mỗi chi tiết đều được chăm chút và cách dẫn cũng vậy. Quốc Đạt lựa chọn phong cách tinh giản, chú trọng nhịp điệu và khoảng lặng, để mọi khoảnh khắc diễn ra trọn vẹn.</p>
+
+                        <div
+                            style="display: flex; gap: 20px; align-items: center; margin-top: 30px; border-top: 1px solid rgba(166,138,97,0.3); padding-top: 20px;">
+                            <div>
+                                <span class="subtitle" style="display: block;">Phong cách</span>
+                                <span class="info-text">Sang trọng, Tinh tế</span>
+                            </div>
+                            <div style="width: 1px; height: 30px; background: rgba(166,138,97,0.3);"></div>
+                            <div>
+                                <span class="subtitle" style="display: block;">Địa điểm</span>
+                                <span class="info-text">JW Marriott Hotel Hanoi</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nửa phải: Video YouTube -->
+                    <div class="album-item"
+                        style="position: relative; width: 100%; aspect-ratio: 9/16; background: #000; overflow: hidden; border-radius: 12px; transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black);">
+                        <div id="luxuryVideoPlayer" style="width: 100%; height: 100%;"></div>
+                        <button class="mute-btn" onclick="toggleAudioGroup('luxury')" title="Bật/Tắt Âm Thanh"
+                            style="pointer-events: auto; bottom: 20px; right: 20px;">
+                            <svg id="icon-muted-luxury" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                            <svg id="icon-unmuted-luxury" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Thêm 3 clip nhỏ phía dưới -->
+                <div class="album-grid-3" style="margin-top: 40px; gap: 20px;">
+                    <div class="album-item" style="aspect-ratio: 1/1;">
+                        <video src="assets/video/first_bite.mp4" style="width: 100%; height: 100%; object-fit: cover;" autoplay muted loop playsinline></video>
+                        <div class="video-tag">First Bite</div>
+                    </div>
+                    <div class="album-item" style="aspect-ratio: 1/1;">
+                        <video src="assets/video/rot_cat.mp4" style="width: 100%; height: 100%; object-fit: cover;" autoplay muted loop playsinline></video>
+                        <div class="video-tag">Rót cát hợp hôn</div>
+                    </div>
+                    <div class="album-item" style="aspect-ratio: 1/1;">
+                        <video src="assets/video/mo_qua.mp4" style="width: 100%; height: 100%; object-fit: cover;" autoplay muted loop playsinline></video>
+                        <div class="video-tag">Opening Gift Box</div>
+                    </div>
+                </div>
+                <p style="margin-top: 25px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; font-style: italic; color: var(--text-muted);">Quốc Đạt sẽ đồng hành cùng cô dâu chú rể trong suốt quá trình chuẩn bị, cùng nhau lựa chọn những nghi thức phù hợp - không chỉ để làm mới, mà để mỗi khoảnh khắc trong buổi lễ thực sự mang dấu ấn riêng của hai bạn.</p>
+            </div>
+
+            <!-- CHƯƠNG 2: Intimate Wedding -->
+            <div class="album-group fade-in">
+                <div class="album-header">
+                    <h3>02. Intimate Wedding</h3>
+                    <span>Tiệc Cưới Thân Mật Khu Rừng / Bãi Biển</span>
+                </div>
+
+                <!-- Bố cục: Video ngang + Nghệ thuật ảnh lộn xộn -->
+                <div style="display: flex; flex-direction: column; gap: 40px;">
+                    <div class="album-item"
+                        style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; overflow: hidden; border-radius: 12px; pointer-events: none; transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black);">
+                        <div id="intimateVideoPlayer" style="width: 100%; height: 100%;"></div>
+                        <button class="mute-btn" onclick="toggleAudioGroup('intimate')" title="Bật/Tắt Âm Thanh"
+                            style="pointer-events: auto; bottom: 20px; right: 20px;">
+                            <svg id="icon-muted-intimate" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                            <svg id="icon-unmuted-intimate" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                        <img src="assets/img/IMG_1622.JPG" class="album-item h-tall" alt="Moment 1">
+                        <img src="assets/img/IMG_1006.JPG" class="album-item h-tall" alt="Moment 2">
+                        <img src="assets/img/IMG_4385.JPG" class="album-item h-tall" alt="Moment 3">
+                        <img src="assets/img/IMG_4378.JPG" class="album-item h-tall" alt="Moment 4">
+                        <img src="assets/img/HNA_8213.jpeg" class="album-item h-tall" alt="Moment 5">
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHƯƠNG 3: Lễ Ăn Hỏi -->
+            <div class="album-group fade-in" style="transition-delay: 0.1s;">
+                <div class="album-header">
+                    <h3>03. Lễ Ăn Hỏi</h3>
+                    <span>Nhẹ Nhàng, Sang Trọng & Đậm Đà Bản Sắc</span>
+                </div>
+                <!-- Bố cục 2 cột: Video bên trái, Text mô tả bên phải -->
+                <div class="album-grid-2" style="align-items: center; gap: 60px;">
+                    <!-- Nửa trái: Video YouTube Shorts -->
+                    <div class="album-item"
+                        style="position: relative; width: 100%; aspect-ratio: 9/16; background: #000; overflow: hidden; border-radius: 12px; transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black);">
+                        <video id="anhoiVideoPlayer" src="assets/video/anhoi.mp4"
+                            style="width: 100%; height: 100%; object-fit: cover; border: none;" autoplay muted loop
+                            playsinline></video>
+                        <button class="mute-btn" onclick="toggleAudioGroup('anhoi')" title="Bật/Tắt Âm Thanh"
+                            style="pointer-events: auto; bottom: 20px; right: 20px;">
+                            <svg id="icon-muted-anhoi" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                            <svg id="icon-unmuted-anhoi" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Nửa phải: Nội dung mô tả -->
+                    <div>
+                        <div class="section-script">The Engagement</div>
+                        <h4 style="margin-bottom: 20px;">Lễ Gia Tiên & Ăn Hỏi</h4>
+                        <p style="margin-bottom: 15px;">Là nghi thức thiêng liêng trong văn hoá truyền thống, lễ Gia
+                            Tiên & Ăn Hỏi không chỉ mang ý nghĩa trang trọng, mà còn là khoảnh khắc kết nối hai gia
+                            đình. Với vai trò là người dẫn dắt và kết nối, Quốc Đạt mong muốn giữ trọn những giá trị
+                            truyền thống, nhưng được thể hiện một cách tinh tế, nhẹ nhàng, ... đủ gần để mọi cảm xúc trở
+                            nên tự nhiên.</p>
+                        <p style="margin-bottom: 15px;">Từng lời thưa gửi, từng khoảnh khắc diễn ra không chỉ để “đúng
+                            lễ”, mà để hai gia đình thực sự cảm nhận được sự kết nối đang hình thành một cách trọn vẹn,
+                            chân thành và rất gần gũi.</p>
+
+                        <div
+                            style="display: flex; gap: 20px; align-items: center; margin-top: 30px; border-top: 1px solid rgba(166,138,97,0.3); padding-top: 20px;">
+                            <div>
+                                <span class="subtitle" style="display: block;">Phong cách</span>
+                                <span class="info-text">Truyền thống, Thanh Lịch</span>
+                            </div>
+                            <div style="width: 1px; height: 30px; background: rgba(166,138,97,0.3);"></div>
+                            <div>
+                                <span class="subtitle" style="display: block;">Quy mô</span>
+                                <span class="info-text">Dành riêng Gia đình 2 bên</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHƯƠNG 4: After Party & Wedding Games -->
+            <div class="album-group fade-in" style="transition-delay: 0.2s;">
+                <div class="album-header">
+                    <h3>04. After Party & Wedding Games</h3>
+                    <span>Bùng Nổ Cảm Xúc, Sôi Động & Tiếng Cười Trọn Vẹn</span>
+                </div>
+
+                <!-- Bố cục CUỘN PHIM (Filmstrip Slider) -->
+                <div class="filmstrip-layout">
+                    <!-- Tiêu đề Canh giữa -->
+                    <div class="filmstrip-header fade-in text-center" style="max-width: 800px; margin: 0 auto; padding-bottom: 40px;">
+                        <div class="section-script" style="margin-bottom: 5px;">The Party</div>
+                        <h4 style="margin-bottom: 15px;">Bữa Tiệc Không Khoảng Cách</h4>
+                        <p style="color: var(--text-dark); margin-bottom: 0;">Một đám cưới đáng nhớ không chỉ có những giây phút lắng đọng, mà còn cần những khoảng thời gian để mọi người gần nhau hơn. Chính vì vậy, sau phần lễ chính, Quốc Đạt thường cùng cặp đôi chuẩn bị những hoạt động thú vị để tạo nên khoảnh khắc kết nối, mang lại tiếng cười và tạo không gian vui vẻ cho bữa tiệc.</p>
+                    </div>
+
+                    <!-- Khung Video Khổng Lồ ở Trung Tâm -->
+                    <div class="filmstrip-video-wrapper fade-in"
+                        style="position: relative; width: 100%; max-width: 600px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: none;">
+                        <!-- Khung Video YouTube Square -->
+                        <div style="padding-top: 100%; position: relative;">
+                            <div id="partyVideoPlayer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+                        </div>
+
+                        <!-- Mute Button -->
+                        <button class="mute-btn" onclick="toggleAudioGroup('party')" title="Bật/Tắt Âm Thanh"
+                            style="position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; z-index: 10;">
+                            <svg id="icon-muted-party" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                            <svg id="icon-unmuted-party" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Dải phim cuộn ngang tự chuyển động liên tục (Infinite Marquee) -->
+                    <div class="filmstrip-slider fade-in">
+                        <div class="filmstrip-track">
+                            <!-- Tập Ảnh Số 1 -->
+                            <div class="marquee-group">
+                                <div class="film-item"><img src="assets/img/IMG_1620.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                                <div class="film-item"><img src="assets/img/IMG_1621.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                                <div class="film-item"><img src="assets/img/IMG_4393.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                                <div class="film-item"><img src="assets/img/IMG_4422.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                                <div class="film-item"><img src="assets/img/IMG_4422.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                                <div class="film-item"><img src="assets/img/IMG_4378.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                            </div>
+                            <!-- Tập Ảnh Số 2 (Hậu Cảnh để lặp vô tận không bị hở) -->
+                            <div class="marquee-group">
+                                <div class="film-item"><img src="assets/img/IMG_1620.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                                <div class="film-item"><img src="assets/img/IMG_1621.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                                <div class="film-item"><img src="assets/img/IMG_4393.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                                <div class="film-item"><img src="assets/img/IMG_4422.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                                <div class="film-item"><img src="assets/img/IMG_4422.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                                <div class="film-item"><img src="assets/img/IMG_4378.JPG" alt="Party" decoding="async"
+                                        loading="lazy"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4.5. DANH SÁCH ĐỐI TÁC ĐỒNG HÀNH (PARTNERS) -->
+    <section class="partners-section fade-in">
+        <h4 class="partners-title">Những Đơn Vị Đã Đồng Hành</h4>
+
+        <div class="partners-slider">
+            <div class="partners-track">
+                <!-- Group 1 -->
+                <div class="partner-group">
+                    <img src="assets/Logo/20160714223655!Lotte_Hotels_&_Resorts_logo.gif" class="partner-logo-img" alt="Lotte" style="height: 100px;">
+                    <img src="assets/Logo/Meliá_Hotels_International_Logo.png" class="partner-logo-img" alt="Melia">
+                    <img src="assets/Logo/Sheraton_Hotels_and_Resorts-Logo.wine.png" class="partner-logo-img" alt="Sheraton" style="height: 100px;">
+                    <img src="assets/Logo/cropped-FOM_Color_Logo_151224.png" class="partner-logo-img" alt="Partner">
+                    <img src="assets/Logo/grand plaza được xóa nền.png" class="partner-logo-img" alt="Grand Plaza" style="height: 120px; transform: translateY(15px);">
+                    <img src="assets/Logo/images được xóa nền 2.png" class="partner-logo-img" alt="Partner" style="height: 100px;">
+                    <img src="assets/Logo/images được xóa nền.png" class="partner-logo-img" alt="Partner" style="height: 100px;">
+                    <img src="assets/Logo/lg-jwmarriott.png" class="partner-logo-img" alt="JW Marriott">
+                    <img src="assets/Logo/logo-1.png" class="partner-logo-img" alt="Partner" style="height: 100px;">
+                    <img src="assets/Logo/trống đồng.webp" class="partner-logo-img" alt="Trong Dong" style="height: 100px;">
+                </div>
+                <!-- Group 2 (Clone y hệt Group 1 để cuộn vô tận) -->
+                <div class="partner-group">
+                    <img src="assets/Logo/20160714223655!Lotte_Hotels_&_Resorts_logo.gif" class="partner-logo-img" alt="Lotte" style="height: 100px;">
+                    <img src="assets/Logo/Meliá_Hotels_International_Logo.png" class="partner-logo-img" alt="Melia">
+                    <img src="assets/Logo/Sheraton_Hotels_and_Resorts-Logo.wine.png" class="partner-logo-img" alt="Sheraton" style="height: 100px;">
+                    <img src="assets/Logo/cropped-FOM_Color_Logo_151224.png" class="partner-logo-img" alt="Partner">
+                    <img src="assets/Logo/grand plaza được xóa nền.png" class="partner-logo-img" alt="Grand Plaza" style="height: 120px; transform: translateY(15px);">
+                    <img src="assets/Logo/images được xóa nền 2.png" class="partner-logo-img" alt="Partner" style="height: 100px;">
+                    <img src="assets/Logo/images được xóa nền.png" class="partner-logo-img" alt="Partner" style="height: 100px;">
+                    <img src="assets/Logo/lg-jwmarriott.png" class="partner-logo-img" alt="JW Marriott">
+                    <img src="assets/Logo/logo-1.png" class="partner-logo-img" alt="Partner" style="height: 100px;">
+                    <img src="assets/Logo/trống đồng.webp" class="partner-logo-img" alt="Trong Dong" style="height: 100px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. REVIEWS -->
+    <section class="reviews-section bg-cream relative" style="padding-bottom: 200px;">
+        <div class="container fade-in">
+            <div class="text-center">
+                <span class="t-script">Feedback</span>
+                <div class="subtitle" style="margin-top: 20px;">← Vuốt sang ngang để lật trang →</div>
+            </div>
+
+            <!-- Feedbacks Slider (Cuộn ngang Carousel) -->
+            <div class="reviews-slider">
+                <div class="review-item-slider fade-in" style="transition-delay: 0.1s;"><img
+                        src="assets/feedback/IMG_1875.JPG" class="review-img" alt="Feedback"></div>
+                <div class="review-item-slider fade-in" style="transition-delay: 0.2s;"><img
+                        src="assets/feedback/IMG_1876.JPG" class="review-img" alt="Feedback"></div>
+                <div class="review-item-slider fade-in" style="transition-delay: 0.3s;"><img
+                        src="assets/feedback/IMG_1877.JPG" class="review-img" alt="Feedback"></div>
+                <div class="review-item-slider fade-in" style="transition-delay: 0.4s;"><img
+                        src="assets/feedback/IMG_1878.JPG" class="review-img" alt="Feedback"></div>
+                <div class="review-item-slider fade-in" style="transition-delay: 0.5s;"><img
+                        src="assets/feedback/IMG_1879.JPG" class="review-img" alt="Feedback"></div>
+                <div class="review-item-slider fade-in" style="transition-delay: 0.6s;"><img
+                        src="assets/feedback/IMG_1880.PNG" class="review-img" alt="Feedback"></div>
+                <div class="review-item-slider fade-in" style="transition-delay: 0.7s;"><img
+                        src="assets/feedback/IMG_1988.PNG" class="review-img" alt="Feedback"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CONTACT -->
+    <section id="contact" class="bg-beige text-center relative">
+        <div class="wave-divider"
+            style="top: -1px; background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1440 320%22 preserveAspectRatio=%22none%22%3E%3Cpath fill=%22%23FCFBF9%22 fill-opacity=%221%22 d=%22M0,192L120,186.7C240,181,480,171,720,160C960,149,1200,139,1320,133.3L1440,128L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z%22%3E%3C/path%3E%3C/svg%3E');">
+        </div>
+
+        <div class="decor-3d sphere-gold lg d-delay-1" style="top: 25%; left: 10%;"></div>
+        <div class="decor-3d sphere-pearl" style="bottom: 20%; right: 15%;"></div>
+
+        <div class="container fade-in" style="padding-top: 80px;">
+            <span class="t-script">Let's Chat</span>
+            <h2 style="margin-bottom: 50px;">Liên Hệ Với Quốc Đạt</h2>
+
+            <div class="contact-layout">
+                <div class="contact-links" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 60px;">
+                    <a href="https://www.facebook.com/share/1GaEVupFao/?mibextid=wwXIfr" target="_blank" class="contact-link">Facebook: MC Quốc Đạt</a>
+                    <a href="https://www.tiktok.com/@mcquocdat.wedding?_r=1&_t=ZS-960CdmXigSo" target="_blank" class="contact-link">TikTok: @mcquocdat.wedding</a>
+                    <a href="https://zalo.me/0838971156" target="_blank" class="contact-link">SĐT / Zalo: 0838971156</a>
+                    <a href="https://drive.google.com/drive/folders/1-4Z9BnafmoWjGPCNaJI21isE8rck5P52" target="_blank" class="contact-link">Profile & Portfolio Khách Hàng</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL (Nâng cấp Vuốt Album) -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()" title="Đóng">&times;</span>
+        <button class="lb-nav lb-prev" onclick="changeImage(-1); event.stopPropagation();">&#10094;</button>
+        <button class="lb-nav lb-next" onclick="changeImage(1); event.stopPropagation();">&#10095;</button>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="Phóng to ảnh">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
