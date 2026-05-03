@@ -556,7 +556,8 @@ nav {
 .filmstrip-track {
     display: flex;
     width: max-content;
-    animation: scroll-left 30s linear infinite !important;
+    gap: 0;
+    animation: scroll-film 20s linear infinite;
     will-change: transform;
 }
 
@@ -566,7 +567,7 @@ nav {
     padding-right: 20px;
 }
 
-@keyframes scroll-left {
+@keyframes scroll-film {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
@@ -630,14 +631,15 @@ nav {
 
 .partners-track {
     display: flex;
-    gap: 80px;
+    gap: 0;
     align-items: center;
-    animation: scroll-left-partner 30s linear infinite;
+    animation: scroll-partner 20s linear infinite;
 }
 
 .partner-group {
     display: flex;
     gap: 80px;
+    padding-right: 80px; /* Essential for seamless loop */
     align-items: center;
 }
 
@@ -677,9 +679,14 @@ nav {
     transform: scale(1.05);
 }
 
-@keyframes scroll-left-partner {
+@keyframes scroll-partner {
     0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-50% - 40px)); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-left-film {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 /* CONTACT */
