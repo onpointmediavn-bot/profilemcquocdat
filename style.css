@@ -562,6 +562,7 @@ nav {
     gap: 0;
     animation: scroll-film 20s linear infinite !important;
     will-change: transform;
+    backface-visibility: hidden;
 }
 
 .marquee-group {

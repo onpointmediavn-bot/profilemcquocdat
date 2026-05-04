@@ -122,10 +122,49 @@ window.onYouTubeIframeAPIReady = function() {
     }
 };
 
+// Performance: Pause videos when not in view
+const videoVisibilityObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        const playerId = entry.target.dataset.playerId;
+        const player = {
+            'story': myStoryPlayer,
+            'luxury': luxuryPlayer,
+            'intimate': intimatePlayer,
+            'party': partyPlayer,
+            'partyLeft': partyLeftPlayer,
+            'partyRight': partyRightPlayer
+        }[playerId];
+
+        if (player && typeof player.pauseVideo === 'function' && typeof player.playVideo === 'function') {
+            if (entry.isIntersecting) {
+                player.playVideo();
+            } else {
+                player.pauseVideo();
+            }
+        }
+    });
+}, { threshold: 0.1 });
+
 function onPlayerReady(event) {
     event.target.mute();
+
+    // Attach observer to the player's container
+    const iframe = event.target.getIframe();
+    const container = iframe.closest('.album-item, .filmstrip-video-wrapper');
+    if (container) {
+        const idMap = {
+            'storyVideoPlayer': 'story',
+            'luxuryVideoPlayer': 'luxury',
+            'intimateVideoPlayer': 'intimate',
+            'partyVideoPlayer': 'party',
+            'partyLeftPlayer': 'partyLeft',
+            'partyRightPlayer': 'partyRight'
+        };
+        container.dataset.playerId = idMap[iframe.id];
+        videoVisibilityObserver.observe(container);
+    }
+
     if (typeof event.target.playVideo === 'function') {
-        // Try to play
         event.target.playVideo();
         
         // Check after a short delay if it's actually playing
