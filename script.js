@@ -125,7 +125,23 @@ window.onYouTubeIframeAPIReady = function() {
 function onPlayerReady(event) {
     event.target.mute();
     if (typeof event.target.playVideo === 'function') {
+        // Try to play
         event.target.playVideo();
+        
+        // Check after a short delay if it's actually playing
+        setTimeout(() => {
+            if (event.target.getPlayerState() !== YT.PlayerState.PLAYING) {
+                console.log("Autoplay blocked, waiting for user interaction.");
+                // Show fallback for story player
+                if (event.target === myStoryPlayer) {
+                    const fallbackBtn = document.getElementById('fallback-play-btn');
+                    if (fallbackBtn) {
+                        fallbackBtn.style.opacity = '1';
+                        fallbackBtn.style.pointerEvents = 'auto';
+                    }
+                }
+            }
+        }, 1500);
     }
 }
 
@@ -138,14 +154,26 @@ function onPlayerStateChange(event) {
     // Xử lý nút Play đè (nếu có)
     const fallbackBtn = document.getElementById('fallback-play-btn');
     if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING) {
-        if (fallbackBtn) fallbackBtn.style.opacity = '0';
-        setTimeout(() => { if (fallbackBtn) fallbackBtn.style.pointerEvents = 'none'; }, 300);
-    } else if (event.data === YT.PlayerState.PAUSED) {
         if (fallbackBtn) {
+            fallbackBtn.style.opacity = '0';
+            fallbackBtn.style.pointerEvents = 'none';
+        }
+    } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.UNSTARTED) {
+        if (event.target === myStoryPlayer && fallbackBtn) {
             fallbackBtn.style.opacity = '1';
             fallbackBtn.style.pointerEvents = 'auto';
         }
     }
+}
+
+// Global Prime for Mobile/Zalo
+function primeAllVideos() {
+    const allPlayers = [myStoryPlayer, luxuryPlayer, intimatePlayer, partyPlayer, partyLeftPlayer, partyRightPlayer];
+    allPlayers.forEach(p => {
+        if (p && typeof p.playVideo === 'function' && p.getPlayerState() !== YT.PlayerState.PLAYING) {
+            p.playVideo();
+        }
+    });
 }
 
 window.forcePlayStory = function() {
@@ -349,4 +377,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     }
+
+    // Interaction priming for mobile/Zalo
+    const primeInteraction = () => {
+        primeAllVideos();
+        document.removeEventListener('click', primeInteraction);
+        document.removeEventListener('touchstart', primeInteraction);
+    };
+    document.addEventListener('click', primeInteraction);
+    document.addEventListener('touchstart', primeInteraction);
 });
