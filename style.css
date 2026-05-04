@@ -425,7 +425,7 @@ nav {
     -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
-/* Optimized Video Fill to remove black bars */
+/* Optimized Video Fill to remove black bars & Hide YouTube UI */
 .album-item iframe,
 .filmstrip-video-wrapper iframe {
     position: absolute;
@@ -434,24 +434,27 @@ nav {
     transform: translate(-50%, -50%) !important;
     pointer-events: none;
     border: none;
+    width: 120% !important; /* Scaled up to hide UI */
+    height: 120% !important;
 }
 
-/* Horizontal videos (Section 2: Intimate Wedding) */
+/* Vertical videos (9:16) */
+.album-item[style*="aspect-ratio: 9/16"] iframe,
+.side-video iframe {
+    width: 130% !important; /* More aggressive scale for vertical to hide top/bottom UI */
+    height: 130% !important;
+}
+
+/* Horizontal videos (16:9) */
 .album-item[style*="aspect-ratio: 16/9"] iframe {
-    width: 115% !important;
-    height: 115% !important;
-}
-
-/* Vertical videos (Section 1: Luxury Wedding) */
-.album-item[style*="aspect-ratio: 9/16"] iframe {
-    width: 115% !important;
-    height: 115% !important;
+    width: 120% !important;
+    height: 120% !important;
 }
 
 /* Section 4: Square frame with vertical video */
 #partyVideoPlayer {
-    width: 102% !important;
-    height: 180% !important; /* Scale height to cover square width */
+    width: 130% !important;
+    height: 180% !important; /* Scale height to cover square width and hide UI */
 }
 
 /* SERVICES */
