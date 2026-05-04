@@ -827,7 +827,89 @@ body.agency-mode .agency-hide {
     display: none !important;
 }
 
-/* Specific spacing adjustment when contact is hidden */
 body.agency-mode .reviews-section {
     padding-bottom: 100px;
+}
+
+/* MOBILE RESPONSIVENESS (Auto-scaling) */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    /* Typography */
+    h1 { font-size: 38px !important; }
+    h2 { font-size: 32px !important; }
+    h3 { font-size: 28px !important; }
+    .hero-script { font-size: 50px !important; }
+    .hero-name { font-size: 40px !important; }
+
+    /* Navigation */
+    .nav-links {
+        display: none; /* Hide by default on mobile */
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 70%;
+        background: var(--white);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        z-index: 1001;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1002;
+    }
+
+    .hamburger span {
+        width: 30px;
+        height: 2px;
+        background: var(--text-dark);
+        transition: 0.3s;
+    }
+
+    /* Hamburger Animation when Active */
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+    /* Hero Section */
+    .hero-content {
+        padding-top: 100px;
+    }
+
+    /* Sections */
+    .about-layout, .services-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Video scaling for mobile */
+    .main-video {
+        flex: 0 0 auto;
+        width: 100%;
+        transform: scale(1) !important;
+    }
 }

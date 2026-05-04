@@ -1,7 +1,7 @@
-// Intersection Observer for fade-in animations
+// 1. Intersection Observer for fade-in animations
 const observerOptions = {
-    threshold: 0.05, // Lowered threshold to trigger earlier
-    rootMargin: '0px 0px -50px 0px' // Trigger slightly before it enters the viewport
+    threshold: 0.05,
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -13,49 +13,31 @@ const revealObserver = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Sticky Header & Navigation
-const header = document.querySelector('header');
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-const navItems = document.querySelectorAll('.nav-links a');
+// 2. Performance: Pause videos when not in view
+const videoVisibilityObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        const playerId = entry.target.dataset.playerId;
+        const players = {
+            'story': myStoryPlayer,
+            'luxury': luxuryPlayer,
+            'intimate': intimatePlayer,
+            'party': partyPlayer,
+            'partyLeft': partyLeftPlayer,
+            'partyRight': partyRightPlayer
+        };
+        const player = players[playerId];
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.classList.add('sticky');
-    } else {
-        header.classList.remove('sticky');
-    }
-});
-
-// Hamburger Toggle
-if (hamburger) {
-    hamburger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        hamburger.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        if (player && typeof player.pauseVideo === 'function' && typeof player.playVideo === 'function') {
+            if (entry.isIntersecting) {
+                player.playVideo();
+            } else {
+                player.pauseVideo();
+            }
+        }
     });
-}
+}, { threshold: 0.1 });
 
-// Close menu when clicking nav links
-navItems.forEach(item => {
-    item.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    });
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (navLinks && navLinks.classList.contains('active') && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-});
-
-// YOUTUBE API INTEGRATION
+// 3. YouTube API Integration
 let myStoryPlayer, luxuryPlayer, intimatePlayer, partyPlayer, partyLeftPlayer, partyRightPlayer;
 
 window.onYouTubeIframeAPIReady = function() {
@@ -122,29 +104,6 @@ window.onYouTubeIframeAPIReady = function() {
     }
 };
 
-// Performance: Pause videos when not in view
-const videoVisibilityObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        const playerId = entry.target.dataset.playerId;
-        const player = {
-            'story': myStoryPlayer,
-            'luxury': luxuryPlayer,
-            'intimate': intimatePlayer,
-            'party': partyPlayer,
-            'partyLeft': partyLeftPlayer,
-            'partyRight': partyRightPlayer
-        }[playerId];
-
-        if (player && typeof player.pauseVideo === 'function' && typeof player.playVideo === 'function') {
-            if (entry.isIntersecting) {
-                player.playVideo();
-            } else {
-                player.pauseVideo();
-            }
-        }
-    });
-}, { threshold: 0.1 });
-
 function onPlayerReady(event) {
     event.target.mute();
 
@@ -166,12 +125,8 @@ function onPlayerReady(event) {
 
     if (typeof event.target.playVideo === 'function') {
         event.target.playVideo();
-        
-        // Check after a short delay if it's actually playing
         setTimeout(() => {
             if (event.target.getPlayerState() !== YT.PlayerState.PLAYING) {
-                console.log("Autoplay blocked, waiting for user interaction.");
-                // Show fallback for story player
                 if (event.target === myStoryPlayer) {
                     const fallbackBtn = document.getElementById('fallback-play-btn');
                     if (fallbackBtn) {
@@ -185,12 +140,10 @@ function onPlayerReady(event) {
 }
 
 function onPlayerStateChange(event) {
-    // Luôn luôn bắt đầu lại nếu video kết thúc (Cưỡng bức Loop)
     if (event.data === YT.PlayerState.ENDED) {
         event.target.playVideo();
     }
 
-    // Xử lý nút Play đè (nếu có)
     const fallbackBtn = document.getElementById('fallback-play-btn');
     if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING) {
         if (fallbackBtn) {
@@ -205,7 +158,6 @@ function onPlayerStateChange(event) {
     }
 }
 
-// Global Prime for Mobile/Zalo - Only play visible videos to avoid overwhelming the browser
 function primeAllVideos() {
     const players = {
         'story': myStoryPlayer,
@@ -222,11 +174,9 @@ function primeAllVideos() {
             const iframe = p.getIframe();
             if (iframe) {
                 const container = iframe.closest('.album-item, .filmstrip-video-wrapper');
-                // Check if container is in view
                 if (container) {
                     const rect = container.getBoundingClientRect();
                     const isInView = (rect.top < window.innerHeight && rect.bottom > 0);
-                    
                     if (isInView && p.getPlayerState() !== YT.PlayerState.PLAYING) {
                         p.playVideo();
                     }
@@ -272,21 +222,19 @@ window.toggleAudioGroup = function(activeId) {
 
     if (activePlayer) {
         if (activePlayer.muted !== undefined && typeof activePlayer.mute === 'undefined') {
-            // Trường hợp Video HTML5 (Lễ ăn hỏi)
             if (activePlayer.muted) {
                 activePlayer.muted = false;
-                activePlayer.currentTime = 0; // Quay lại từ đầu
+                activePlayer.currentTime = 0;
                 if (iconMuted && iconUnmuted) { iconMuted.style.display = 'none'; iconUnmuted.style.display = 'block'; }
             } else {
                 activePlayer.muted = true;
                 if (iconMuted && iconUnmuted) { iconMuted.style.display = 'block'; iconUnmuted.style.display = 'none'; }
             }
         } else if (typeof activePlayer.isMuted === 'function') {
-            // Trường hợp YouTube
             if (activePlayer.isMuted()) {
                 activePlayer.unMute();
                 activePlayer.setVolume(100);
-                activePlayer.seekTo(0); // Quay lại từ đầu
+                activePlayer.seekTo(0);
                 activePlayer.playVideo();
                 if (iconMuted && iconUnmuted) { iconMuted.style.display = 'none'; iconUnmuted.style.display = 'block'; }
             } else {
@@ -297,12 +245,11 @@ window.toggleAudioGroup = function(activeId) {
     }
 };
 
-// Lightbox logic
+// 4. Lightbox logic
 let galleryImages = [];
 let currentIndex = 0;
 
 function initGallery() {
-    // Collect all images EXCEPT partner logos
     const imgs = document.querySelectorAll('img:not(.partner-logo-img)');
     galleryImages = Array.from(imgs).map(img => img.src);
 
@@ -312,11 +259,6 @@ function initGallery() {
             e.stopPropagation();
             window.openLightbox(this.src);
         });
-    });
-
-    // Explicitly remove cursor pointer from logos just in case
-    document.querySelectorAll('.partner-logo-img').forEach(logo => {
-        logo.style.cursor = 'default';
     });
 }
 
@@ -345,19 +287,53 @@ window.closeLightbox = function() {
     document.body.style.overflow = 'auto';
 };
 
-// Touch support for lightbox
-let touchStartX = 0;
-let touchEndX = 0;
-
+// 5. DOMContentLoaded Initialization
 document.addEventListener('DOMContentLoaded', () => {
     // Agency Mode Check
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('view') === 'agency') {
         document.body.classList.add('agency-mode');
-        console.log('Agency Mode Active: Personal contact information hidden.');
     }
 
-    // Initial reveal for items already in view
+    // Sticky Header
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('sticky');
+        } else {
+            header.classList.remove('sticky');
+        }
+    });
+
+    // Hamburger Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        navLinks.querySelectorAll('a').forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+
+    // Reveal animations
     document.querySelectorAll('.fade-in').forEach(el => {
         revealObserver.observe(el);
         const rect = el.getBoundingClientRect();
@@ -373,8 +349,11 @@ document.addEventListener('DOMContentLoaded', () => {
         track.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
     }
 
+    // Lightbox touch
     const lb = document.getElementById('lightbox');
     if (lb) {
+        let touchStartX = 0;
+        let touchEndX = 0;
         lb.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
         lb.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
@@ -386,47 +365,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Infinite Scroll for Feedbacks
+    // Infinite Reviews Scroll
     const reviewsSlider = document.querySelector('.reviews-slider');
     if (reviewsSlider) {
         const items = Array.from(reviewsSlider.children);
-        
-        // Clone items 2 times for a much longer buffer
-        items.forEach(item => {
-            const clone = item.cloneNode(true);
-            reviewsSlider.appendChild(clone);
-        });
-        items.forEach(item => {
-            const clone = item.cloneNode(true);
-            reviewsSlider.insertBefore(clone, reviewsSlider.firstChild);
-        });
-
-        // The middle section is the original. 
-        // We have 3 sections total. We want to start at the middle one.
-        setTimeout(() => {
-            const singleSetWidth = reviewsSlider.scrollWidth / 3;
-            reviewsSlider.scrollLeft = singleSetWidth;
-        }, 100);
+        items.forEach(item => reviewsSlider.appendChild(item.cloneNode(true)));
+        items.forEach(item => reviewsSlider.insertBefore(item.cloneNode(true), reviewsSlider.firstChild));
+        setTimeout(() => { reviewsSlider.scrollLeft = reviewsSlider.scrollWidth / 3; }, 100);
 
         let isScrolling;
         reviewsSlider.addEventListener('scroll', () => {
-            // Wait for user to stop scrolling/swiping before teleporting
             window.clearTimeout(isScrolling);
-            
             isScrolling = setTimeout(() => {
                 const singleSetWidth = reviewsSlider.scrollWidth / 3;
-                
-                // If scrolled into the 3rd section, jump back to 2nd section
                 if (reviewsSlider.scrollLeft >= singleSetWidth * 2 - 50) {
                     reviewsSlider.style.scrollBehavior = 'auto';
                     reviewsSlider.scrollLeft -= singleSetWidth;
-                } 
-                // If scrolled into the 1st section, jump forward to 2nd section
-                else if (reviewsSlider.scrollLeft <= 50) {
+                } else if (reviewsSlider.scrollLeft <= 50) {
                     reviewsSlider.style.scrollBehavior = 'auto';
                     reviewsSlider.scrollLeft += singleSetWidth;
                 }
-            }, 150); // 150ms after scroll momentum stops
+            }, 150);
         });
     }
 
