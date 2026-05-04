@@ -244,6 +244,13 @@ let touchStartX = 0;
 let touchEndX = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Agency Mode Check
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('view') === 'agency') {
+        document.body.classList.add('agency-mode');
+        console.log('Agency Mode Active: Personal contact information hidden.');
+    }
+
     // Initial reveal for items already in view
     document.querySelectorAll('.fade-in').forEach(el => {
         revealObserver.observe(el);

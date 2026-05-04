@@ -767,3 +767,13 @@ nav {
     display: flex;
     opacity: 1;
 }
+
+/* AGENCY MODE STYLES */
+body.agency-mode .agency-hide {
+    display: none !important;
+}
+
+/* Specific spacing adjustment when contact is hidden */
+body.agency-mode .reviews-section {
+    padding-bottom: 100px;
+}
