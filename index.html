@@ -239,7 +239,7 @@
                         style="position: relative; width: 100%; aspect-ratio: 9/16; background: #000; overflow: hidden; border-radius: 12px; transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black);">
                         <div id="luxuryVideoPlayer" style="width: 100%; height: 100%;"></div>
                         <!-- Invisible Overlay to hide YT UI on hover -->
-                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;"></div>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;" onclick="primeAllVideos()"></div>
                         <button class="mute-btn" onclick="toggleAudioGroup('luxury')" title="Bật/Tắt Âm Thanh"
                             style="pointer-events: auto; bottom: 20px; right: 20px;">
                             <svg id="icon-muted-luxury" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -290,7 +290,7 @@
                         style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; overflow: hidden; border-radius: 12px; pointer-events: none; transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black);">
                         <div id="intimateVideoPlayer" style="width: 100%; height: 100%;"></div>
                         <!-- Invisible Overlay to hide YT UI on hover -->
-                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;"></div>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;" onclick="primeAllVideos()"></div>
                         <button class="mute-btn" onclick="toggleAudioGroup('intimate')" title="Bật/Tắt Âm Thanh"
                             style="pointer-events: auto; bottom: 20px; right: 20px;">
                             <svg id="icon-muted-intimate" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -402,7 +402,7 @@
                         <div class="filmstrip-video-wrapper side-video">
                             <div style="padding-top: 177.77%; position: relative;">
                                 <div id="partyLeftPlayer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;"></div>
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;" onclick="primeAllVideos()"></div>
                             </div>
                             <!-- Mute Button Left -->
                             <button class="mute-btn" onclick="toggleAudioGroup('partyLeft')" title="Bật/Tắt Âm Thanh"
@@ -427,7 +427,7 @@
                         <div class="filmstrip-video-wrapper main-video">
                             <div style="padding-top: 100%; position: relative;">
                                 <div id="partyVideoPlayer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;"></div>
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;" onclick="primeAllVideos()"></div>
                             </div>
 
                             <!-- Mute Button -->
@@ -453,7 +453,7 @@
                         <div class="filmstrip-video-wrapper side-video">
                             <div style="padding-top: 177.77%; position: relative;">
                                 <div id="partyRightPlayer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;"></div>
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;" onclick="primeAllVideos()"></div>
                             </div>
                             <!-- Mute Button Right -->
                             <button class="mute-btn" onclick="toggleAudioGroup('partyRight')" title="Bật/Tắt Âm Thanh"

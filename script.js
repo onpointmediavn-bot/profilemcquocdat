@@ -205,12 +205,33 @@ function onPlayerStateChange(event) {
     }
 }
 
-// Global Prime for Mobile/Zalo
+// Global Prime for Mobile/Zalo - Only play visible videos to avoid overwhelming the browser
 function primeAllVideos() {
-    const allPlayers = [myStoryPlayer, luxuryPlayer, intimatePlayer, partyPlayer, partyLeftPlayer, partyRightPlayer];
-    allPlayers.forEach(p => {
-        if (p && typeof p.playVideo === 'function' && p.getPlayerState() !== YT.PlayerState.PLAYING) {
-            p.playVideo();
+    const players = {
+        'story': myStoryPlayer,
+        'luxury': luxuryPlayer,
+        'intimate': intimatePlayer,
+        'party': partyPlayer,
+        'partyLeft': partyLeftPlayer,
+        'partyRight': partyRightPlayer
+    };
+
+    Object.keys(players).forEach(id => {
+        const p = players[id];
+        if (p && typeof p.playVideo === 'function') {
+            const iframe = p.getIframe();
+            if (iframe) {
+                const container = iframe.closest('.album-item, .filmstrip-video-wrapper');
+                // Check if container is in view
+                if (container) {
+                    const rect = container.getBoundingClientRect();
+                    const isInView = (rect.top < window.innerHeight && rect.bottom > 0);
+                    
+                    if (isInView && p.getPlayerState() !== YT.PlayerState.PLAYING) {
+                        p.playVideo();
+                    }
+                }
+            }
         }
     });
 }
@@ -416,13 +437,4 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     }
-
-    // Interaction priming for mobile/Zalo
-    const primeInteraction = () => {
-        primeAllVideos();
-        document.removeEventListener('click', primeInteraction);
-        document.removeEventListener('touchstart', primeInteraction);
-    };
-    document.addEventListener('click', primeInteraction);
-    document.addEventListener('touchstart', primeInteraction);
 });
