@@ -387,33 +387,49 @@
                         <p style="color: var(--text-dark); margin-bottom: 0;">Một đám cưới đáng nhớ không chỉ có những giây phút lắng đọng, mà còn cần những khoảng thời gian để mọi người gần nhau hơn. Chính vì vậy, sau phần lễ chính, Quốc Đạt thường cùng cặp đôi chuẩn bị những hoạt động thú vị để tạo nên khoảnh khắc kết nối, mang lại tiếng cười và tạo không gian vui vẻ cho bữa tiệc.</p>
                     </div>
 
-                    <!-- Khung Video Khổng Lồ ở Trung Tâm -->
-                    <div class="filmstrip-video-wrapper fade-in"
-                        style="position: relative; width: 100%; max-width: 600px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: none;">
-                        <!-- Khung Video YouTube Square -->
-                        <div style="padding-top: 100%; position: relative;">
-                            <div id="partyVideoPlayer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-                            <!-- Invisible Overlay to hide YT UI on hover -->
-                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;"></div>
+                    <!-- Khung Video 3 Cột -->
+                    <div class="party-video-grid fade-in">
+                        <!-- Video Trái -->
+                        <div class="filmstrip-video-wrapper side-video">
+                            <div style="padding-top: 177.77%; position: relative;">
+                                <div id="partyLeftPlayer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;"></div>
+                            </div>
                         </div>
 
-                        <!-- Mute Button -->
-                        <button class="mute-btn" onclick="toggleAudioGroup('party')" title="Bật/Tắt Âm Thanh"
-                            style="position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; z-index: 10;">
-                            <svg id="icon-muted-party" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                <line x1="23" y1="9" x2="17" y2="15"></line>
-                                <line x1="17" y1="9" x2="23" y2="15"></line>
-                            </svg>
-                            <svg id="icon-unmuted-party" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                            </svg>
-                        </button>
+                        <!-- Video Chính ở Giữa -->
+                        <div class="filmstrip-video-wrapper main-video">
+                            <div style="padding-top: 100%; position: relative;">
+                                <div id="partyVideoPlayer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;"></div>
+                            </div>
+
+                            <!-- Mute Button -->
+                            <button class="mute-btn" onclick="toggleAudioGroup('party')" title="Bật/Tắt Âm Thanh"
+                                style="position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; z-index: 10;">
+                                <svg id="icon-muted-party" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                                </svg>
+                                <svg id="icon-unmuted-party" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Video Phải -->
+                        <div class="filmstrip-video-wrapper side-video">
+                            <div style="padding-top: 177.77%; position: relative;">
+                                <div id="partyRightPlayer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto;"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Dải phim cuộn ngang tự chuyển động liên tục (Infinite Marquee) -->

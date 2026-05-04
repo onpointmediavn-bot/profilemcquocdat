@@ -56,7 +56,7 @@ document.addEventListener('click', (e) => {
 });
 
 // YOUTUBE API INTEGRATION
-let myStoryPlayer, luxuryPlayer, intimatePlayer, partyPlayer;
+let myStoryPlayer, luxuryPlayer, intimatePlayer, partyPlayer, partyLeftPlayer, partyRightPlayer;
 
 window.onYouTubeIframeAPIReady = function() {
     const commonVars = { 
@@ -104,6 +104,22 @@ window.onYouTubeIframeAPIReady = function() {
             events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
         });
     }
+
+    if (document.getElementById('partyLeftPlayer')) {
+        partyLeftPlayer = new YT.Player('partyLeftPlayer', {
+            videoId: 'UB4kRoj3lc4',
+            playerVars: { ...commonVars, 'playlist': 'UB4kRoj3lc4' },
+            events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
+        });
+    }
+
+    if (document.getElementById('partyRightPlayer')) {
+        partyRightPlayer = new YT.Player('partyRightPlayer', {
+            videoId: 'kJp7r38XQeI',
+            playerVars: { ...commonVars, 'playlist': 'kJp7r38XQeI' },
+            events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
+        });
+    }
 };
 
 function onPlayerReady(event) {
@@ -146,6 +162,8 @@ window.toggleAudioGroup = function(activeId) {
         'luxury': luxuryPlayer,
         'intimate': intimatePlayer,
         'party': partyPlayer,
+        'partyLeft': partyLeftPlayer,
+        'partyRight': partyRightPlayer,
         'anhoi': anHoiPlayer
     };
 
